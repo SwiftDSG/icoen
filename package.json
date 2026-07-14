@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "gsap": "^3.9.1",
-    "idb-keyval": "^6.1.0",
     "smooth-scrollbar": "^8.7.4"
   }
 }

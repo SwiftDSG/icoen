@@ -1,19 +1,10 @@
-import { PersistentStore } from "./main";
+import { reactive, readonly } from "vue";
 
-interface Base extends Object {
-  viewMode: 'desktop' | 'mobile'
-}
+const state = reactive<{ viewMode: 'desktop' | 'mobile' | null }>({
+  viewMode: null,
+});
 
-class BaseStore extends PersistentStore<Base> {
-  protected data(): Base {
-    return {
-      viewMode: null,
-    };
-  }
-
-  setViewMode(viewMode: 'desktop' | 'mobile') {
-    this.state.viewMode = viewMode;
-  }
-}
-
-export const baseStore = new BaseStore("base");
+export const baseStore = {
+  getState: () => readonly(state),
+  setViewMode: (viewMode: 'desktop' | 'mobile') => { state.viewMode = viewMode; },
+};
